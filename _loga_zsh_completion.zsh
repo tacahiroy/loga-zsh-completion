@@ -6,7 +6,8 @@ _is_project_dir() {
 } 
 
 _loga_terms() {
-  terms=(`loga show`)
+  # trim TARGET TERM and NOTE
+  terms=(`loga show | sed -e 's/[ ]\{11,\}[^ ].*$//'`)
 }
 
 _loga_glossaries() {
@@ -105,6 +106,6 @@ case "$state" in
   term)
     _loga_terms
     _wanted terms expl term \
-      compadd - $terms
+      compadd - "$terms[@]"
     ;;
 esac

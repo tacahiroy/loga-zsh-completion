@@ -58,30 +58,36 @@ _loga_glossaries() {
   compadd $@ -k glossaries
 }
 
+_loga_importable_projects() {
+  projects=(${(f)"$(loga import --list | sed -e 's/[ ]\{1,\}:.*$//')"})
+  compadd $@ -k projects
+}
+
 _loga_tasks() {
-  _args=("add"
-  "config"
-  "delete"
-  "help"
-  "import"
-  "list"
-  "lookup"
-  "new"
-  "register"
-  "show"
-  "unregister"
-  "update"
-  "version")
-  compadd "$@" -k _args
+  _tasks=(
+    "add"
+    "config"
+    "delete"
+    "help"
+    "import"
+    "list"
+    "lookup"
+    "new"
+    "register"
+    "show"
+    "unregister"
+    "update"
+    "version")
+  compadd "$@" -k _tasks
 }
 
 _loga_delete_flags() {
-  _args=("--force")
-  compadd "$@" -k _args
+  _flags=("--force")
+  compadd "$@" -k _flags
 }
 
-local -a _1st_arguments
-_1st_arguments=(
+local -a _tasks
+_tasks=(
   "add:Add term to glossary"
   "config:Set config"
   "delete:Delete term"
@@ -94,8 +100,7 @@ _1st_arguments=(
   "show:Show terms in glossary"
   "unregister:Unregister .logaling"
   "update:Update term"
-  "version:Show version"
-)
+  "version:Show version")
 
 # local -a terms glossaries is_project_dir
 
@@ -110,7 +115,7 @@ _arguments \
   "*:: :->subcmds" && return 0
 
 if (( CURRENT == 1 )); then
-  _describe -t commands "loga subcommand" _1st_arguments
+  _describe -t commands "loga subcommand" _tasks
   return
 fi
 

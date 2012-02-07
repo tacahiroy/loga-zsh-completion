@@ -19,7 +19,7 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.2
 -> `SOURCE TERM`, `TARGET TERM`, `--force`
 
 `help [TASK]`  
--> `TASK` を補完
+-> `TASK`
 
 `import`  
 -> `loga import --list` で得られるプロジェクト名

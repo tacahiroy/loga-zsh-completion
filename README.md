@@ -29,7 +29,7 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.2
 
 `update [SOURCE TERM] [TARGET TERM] [NEW TARGET TERM], [NOTE(optional)]`  
 -> `SOURCE TERM`,  `TARGET TERM`,  `NEW TARGET TERM`  
-`[NEW TARGET TERM]` は、`[TARGET TERM]` と同じ内容を補完
+`NEW TARGET TERM` は、`TARGET TERM` と同じ内容を補完
 
     add [SOURCE TERM] [TARGET TERM] [NOTE(optional)]
     list

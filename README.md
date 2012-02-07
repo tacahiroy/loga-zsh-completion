@@ -38,7 +38,7 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.2
     show
     unregister
     version
-オプションのみ
+-> オプションのみ
 
 
 ## オプション:

@@ -1,5 +1,5 @@
 #compdef loga
-# Version: 0.3.0
+# Version: 0.1.2
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 # License: MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{
@@ -144,10 +144,6 @@ case "$words[1]" in
       ":flags:_loga_delete_flags" \
       $loga_global_flags
     ;;
-  help)
-    _arguments \
-      ":task:_loga_tasks"
-    ;;
   lookup)
     _arguments \
       ":source:_loga_source_terms" \
@@ -163,6 +159,10 @@ case "$words[1]" in
   show)
     _arguments \
       $loga_global_flags
+    ;;
+  help)
+    _arguments \
+      ":task:_loga_tasks"
     ;;
 esac
 

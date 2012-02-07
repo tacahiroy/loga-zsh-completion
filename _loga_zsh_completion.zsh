@@ -6,8 +6,13 @@ _loga_config_keys() {
 }
 
 _loga_config_flags() {
-  _args=("--global")
-  compadd $@ -k _args
+  _flags=("--global")
+  compadd $@ -k _flags
+}
+
+_loga_import_flags() {
+  _flags=("--list")
+  compadd $@ -k _flags
 }
 
 _loga_source_terms() {
@@ -88,8 +93,14 @@ if (( CURRENT == 1 )); then
 fi
 
 case "$words[1]" in
-  add|import|list|new|unregister|version)
+  add|list|new|unregister)
     _arguments \
+      $loga_global_flags
+    ;;
+  import)
+    _arguments \
+      ":projects:_loga_importable_projects" \
+      ":flags:_loga_import_flags" \
       $loga_global_flags
     ;;
   config)

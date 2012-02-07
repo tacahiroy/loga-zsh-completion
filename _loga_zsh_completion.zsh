@@ -1,10 +1,5 @@
 #compdef loga
 
-_is_project_dir() {
-  $(loga show | grep -e '^input glossary name' 2>&1 > /dev/null)
-  is_project_dir=$?
-} 
-
 _loga_terms() {
   # trim TARGET TERM and NOTE
   terms=(`loga show | sed -e 's/[ ]\{11,\}[^ ].*$//'`)
@@ -61,13 +56,12 @@ _1st_arguments=(
 )
 
 # local -a terms glossaries is_project_dir
-# _is_project_dir
 
 loga_global_flags=(
   "(-g --glossary=GLOSSARY)"{-g,--glossary=-}"[Set glossary]:glossaries:->glossary"
   "(-S --source-language=SOURCE-LANGUAGE)"{-S,--source-language=-}"[Set source language]"
   "(-T --target-language=TARGET-LANGUAGE)"{-T,--target-language=-}"[Set target language]"
-  "(-h --logaling-home=LOGALING-HOME)"{-h,--logaling-home=-}"[Set logaling home]"
+  "(-h --logaling-home=LOGALING-HOME)"{-h,--logaling-home=-}"[Set logaling home]:directory:_directories"
 )
 
 _arguments \
@@ -119,3 +113,8 @@ case "$words[1]" in
     ;;
 esac
 
+case "$state" in
+  glossary)
+    _loga_glossaries
+    ;;
+esac

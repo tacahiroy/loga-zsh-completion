@@ -13,22 +13,22 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.2
 `補完1`, `補完2`...
 
 `config [KEY] [VALUE] [--global(optional)]`  
-`KEY`, `--global`
+-> `KEY`, `--global`
 
 `delete [SOURCE TERM] [TARGET TERM(optional)] [--force(optional)]`  
-`SOURCE TERM`, `TARGET TERM`, `--force`
+-> `SOURCE TERM`, `TARGET TERM`, `--force`
 
 `help [TASK]`  
-`TASK` を補完
+-> `TASK` を補完
 
 `import`  
-`loga import --list` で得られるプロジェクト名
+-> `loga import --list` で得られるプロジェクト名
 
 `lookup [TERM]`  
-`TERM`
+-> `TERM`
 
 `update [SOURCE TERM] [TARGET TERM] [NEW TARGET TERM], [NOTE(optional)]`  
-`SOURCE TERM`,  `TARGET TERM`,  `NEW TARGET TERM`  
+-> `SOURCE TERM`,  `TARGET TERM`,  `NEW TARGET TERM`  
 `[NEW TARGET TERM]` は、`[TARGET TERM]` と同じ内容を補完
 
     add [SOURCE TERM] [TARGET TERM] [NOTE(optional)]

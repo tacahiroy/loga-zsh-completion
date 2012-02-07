@@ -2,13 +2,18 @@
 
 _loga_source_terms() {
   # trim TARGET TERM and NOTE
+  # GNU sed is preferable ...
   terms=(${(f)"$(loga show | sed -e 's/[ ]\{11,\}[^ ].*$//;s/^[ ]*//')"})
   compadd $@ -k terms
 }
 
 _loga_target_terms() {
-  # terms=(${(f)"$(loga show | tr '\t' '#' | sed -e 's/^[ ]\{2,\}.*[ ]\{11,\}//;s/##.*//')"})
-  # compadd $@ -k terms
+  src=$(print $words[2] | sed -e 's/"//g')
+  if [[ "$src" != "" ]]; then
+    target_terms=(${(f)"$(loga lookup "${src}" | tr '\t' '#' | \
+                          sed -e 's/^[ ]\{2,\}.*[ ]\{11,\}//;s/#\{1,\}.*//')"})
+    compadd $@ -k target_terms
+  fi
 }
 
 _loga_glossaries() {
@@ -98,8 +103,7 @@ case "$words[1]" in
     ;;
   help)
     _arguments \
-      ":task:_loga_tasks" \
-      $loga_global_flags
+      ":task:_loga_tasks"
     ;;
   lookup)
     _arguments \
@@ -110,7 +114,7 @@ case "$words[1]" in
     _arguments \
       ":source:_loga_source_terms" \
       ":target:_loga_target_terms" \
-      ":new_target:" \
+      ":new_target:_loga_target_terms" \
       $loga_global_flags
     ;;
   show)

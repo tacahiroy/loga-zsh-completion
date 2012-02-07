@@ -1,5 +1,15 @@
 #compdef loga
 
+_loga_config_keys() {
+  keys=(glossary source-language target-language)
+  compadd $@ -k keys
+}
+
+_loga_config_flags() {
+  _args=("--global")
+  compadd $@ -k _args
+}
+
 _loga_source_terms() {
   # trim TARGET TERM and NOTE
   # GNU sed is preferable ...
@@ -40,11 +50,6 @@ _loga_tasks() {
 
 _loga_delete_flags() {
   _args=("--force")
-  compadd "$@" -k _args
-}
-
-_loga_config_flags() {
-  _args=("--global")
   compadd "$@" -k _args
 }
 
@@ -89,7 +94,7 @@ case "$words[1]" in
     ;;
   config)
     _arguments \
-      ":key:" \
+      ":key:_loga_config_keys" \
       ":value:" \
       ":flags:_loga_config_flags" \
       $loga_global_flags

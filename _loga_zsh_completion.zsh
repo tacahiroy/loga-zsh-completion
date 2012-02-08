@@ -1,5 +1,5 @@
 #compdef loga
-# Version: 0.1.2
+# Version: 0.3.0
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 # License: MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{

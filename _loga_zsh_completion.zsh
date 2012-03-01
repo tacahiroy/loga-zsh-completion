@@ -1,7 +1,9 @@
 #compdef loga
-# Version: 0.3.0
+# Version: 0.3.0-013
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
-# License: MIT License
+# supports logaling-command-0.1.3
+#
+# License: The MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -27,35 +29,32 @@ _loga_config_keys() {
   compadd $@ -k keys
 }
 
-_loga_config_flags() {
-  _flags=("--global")
-  compadd $@ -k _flags
-}
-
-_loga_import_flags() {
-  _flags=("--list")
-  compadd $@ -k _flags
-}
-
 _loga_source_terms() {
   # trim TARGET TERM and NOTE
   # GNU sed is preferable ...
-  terms=(${(f)"$(loga show | sed -e 's/[ ]\{11,\}[^ ].*$//;s/^[ ]*//')"})
+  terms=(${(f)"$(loga show --no-pager | sed -e 's/[ ]\{11,\}[^ ].*$//;s/^[ ]*//')"})
   compadd $@ -k terms
 }
 
 _loga_target_terms() {
   src=$(print $words[2] | sed -e 's/"//g')
-  if [[ "$src" != "" ]]; then
-    target_terms=(${(f)"$(loga lookup "${src}" | tr '\t' '#' | \
-                          sed -e 's/^[ ]\{2,\}.*[ ]\{11,\}//;s/#\{1,\}.*//')"})
+  if [[ "${src}" != "" ]]; then
+    # FIXME: easier way
+    target_terms=(${(f)"$(loga lookup "${src}" --no-pager --no-color --output=json | \
+                  grep -C1 "^  \"source\": \"${src}\"," | grep '"target":' | \
+                  sed -e 's/[ \"]//g;s/,$//' | awk -F: '{print $2}')"})
     compadd $@ -k target_terms
   fi
 }
 
 _loga_glossaries() {
-  glossaries=(`loga list`)
+  glossaries=(`loga list --no-pager | tr -d ' '`)
   compadd $@ -k glossaries
+}
+
+_loga_output_type() {
+  types=(csv json)
+  compadd $@ -k types
 }
 
 _loga_importable_projects() {
@@ -81,11 +80,6 @@ _loga_tasks() {
   compadd "$@" -k _tasks
 }
 
-_loga_delete_flags() {
-  _flags=("--force")
-  compadd "$@" -k _flags
-}
-
 local -a _tasks
 _tasks=(
   "add:Add term to glossary"
@@ -104,11 +98,13 @@ _tasks=(
 
 # local -a terms glossaries is_project_dir
 
+#"--output=-[output type]:types:->output_type" \
 loga_global_flags=(
-  "(-g --glossary=GLOSSARY)"{-g,--glossary=-}"[Set glossary]:glossaries:->glossary"
-  "(-S --source-language=SOURCE-LANGUAGE)"{-S,--source-language=-}"[Set source language]"
-  "(-T --target-language=TARGET-LANGUAGE)"{-T,--target-language=-}"[Set target language]"
-  "(-h --logaling-home=LOGALING-HOME)"{-h,--logaling-home=-}"[Set logaling home]:directory:_directories"
+  "--glossary=-[glossary name]:glossaries:->glossary"
+  "--source-language=-[source language(e.g. en)]"
+  "--target-language=-[target language(e.g. ja)]"
+  "--logaling-home=-[logaling home]:directory:_directories"
+  "--logaling-config=-[.logaling directory]:directory:_directories"
 )
 
 _arguments \
@@ -120,34 +116,36 @@ if (( CURRENT == 1 )); then
 fi
 
 case "$words[1]" in
-  add|list|new|unregister)
+  add|new|unregister)
     _arguments \
       $loga_global_flags
     ;;
   import)
     _arguments \
       ":projects:_loga_importable_projects" \
-      ":flags:_loga_import_flags" \
-      $loga_global_flags
+      "--list"
     ;;
   config)
     _arguments \
       ":key:_loga_config_keys" \
       ":value:" \
-      ":flags:_loga_config_flags" \
+      "--global" \
       $loga_global_flags
     ;;
   delete)
     _arguments \
       ":source:_loga_source_terms" \
       ":target:_loga_target_terms" \
-      ":flags:_loga_delete_flags" \
+      "--force" \
       $loga_global_flags
     ;;
   lookup)
     _arguments \
       ":source:_loga_source_terms" \
-      $loga_global_flags
+      "--no-pager" \
+      "--no-color" \
+      "--output=-[output type]:types:->output_type" \
+      $loga_global_flags && ret=0
     ;;
   update)
     _arguments \
@@ -158,6 +156,12 @@ case "$words[1]" in
     ;;
   show)
     _arguments \
+      "--no-pager" \
+      $loga_global_flags
+    ;;
+  list)
+    _arguments \
+      "--no-pager" \
       $loga_global_flags
     ;;
   help)
@@ -170,6 +174,9 @@ case "$state" in
   glossary)
     _loga_glossaries
     ;;
+  output_type)
+    _loga_output_type
+    ;;
 esac
 
-# vim: fdm=marker
+# vim: fen:fdm=marker

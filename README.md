@@ -4,6 +4,14 @@ logaling-command zsh completion file
 logaling-command の zsh 補完定義ファイルです。現在、version 0.1.3 に対応しています。
 必要そうなものは大体実装されています(のつもりです)。
 
+## インストール
+他の補完定義ファイルと同じ場所に配置してください。例えば、
+    git clone http://github.com/tacahiroy/loga-zsh-completion.git
+    ln -s _loga_zsh_completion.zsh ~/.zsh/func/
+のようにしてください。もちろん、
+    cp _loga_zsh_completion.zsh ~/.zsh/func/
+でもOKです。
+
 ## タスク:
 `loga` コマンドに続いてタスクが補完されます
 

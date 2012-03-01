@@ -1,5 +1,5 @@
 #compdef loga
-# Version: 0.3.0-013
+# Version: 0.3.1-013
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 # supports logaling-command-0.1.3
 #
@@ -39,7 +39,7 @@ _loga_source_terms() {
 _loga_target_terms() {
   src=$(print $words[2] | sed -e 's/"//g')
   if [[ "${src}" != "" ]]; then
-    # FIXME: easier way
+    # FIXME: complicated!
     target_terms=(${(f)"$(loga lookup "${src}" --no-pager --no-color --output=json | \
                   grep -C1 "^  \"source\": \"${src}\"," | grep '"target":' | \
                   sed -e 's/[ \"]//g;s/,$//' | awk -F: '{print $2}')"})
@@ -100,11 +100,11 @@ _tasks=(
 
 #"--output=-[output type]:types:->output_type" \
 loga_global_flags=(
-  "--glossary=-[glossary name]:glossaries:->glossary"
-  "--source-language=-[source language(e.g. en)]"
-  "--target-language=-[target language(e.g. ja)]"
-  "--logaling-home=-[logaling home]:directory:_directories"
-  "--logaling-config=-[.logaling directory]:directory:_directories"
+  "(-g --glossary=-)"{-g,--glossary=}"[glossary name]:glossaries:->glossary"
+  "(-S --source-language=-)"{-S,--source-language=}"[source language(e.g. en)]"
+  "(-T --target-language=-)"{-T,--target-language=}"[target language(e.g. ja)]"
+  "(-h --logaling-home=-)"{-h,--logaling-home=}"[logaling home]:directory:_directories"
+  "(-c --logaling-config=-)"{-c,--logaling-config=}"[.logaling directory]:directory:_directories"
 )
 
 _arguments \
@@ -123,7 +123,8 @@ case "$words[1]" in
   import)
     _arguments \
       ":projects:_loga_importable_projects" \
-      "--list"
+      "--list" \
+      $loga_global_flags
     ;;
   config)
     _arguments \
@@ -145,7 +146,8 @@ case "$words[1]" in
       "--no-pager" \
       "--no-color" \
       "--output=-[output type]:types:->output_type" \
-      $loga_global_flags && ret=0
+      "--dictionary" \
+      $loga_global_flags
     ;;
   update)
     _arguments \

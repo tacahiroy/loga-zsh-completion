@@ -1,7 +1,7 @@
 #compdef loga
-# Version: 0.3.1-013
+# Version: 0.3.1-014
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
-# supports logaling-command-0.1.3
+# supported logaling-command-0.1.4
 #
 # License: The MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{

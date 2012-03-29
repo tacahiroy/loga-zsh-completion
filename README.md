@@ -1,7 +1,7 @@
 logaling-command zsh completion file
 ===========
 
-logaling-command の zsh 補完定義ファイルです。現在、version 0.1.3 に対応しています。
+logaling-command の zsh 補完定義ファイルです。現在、version 0.1.4 に対応しています。
 必要そうなものは大体実装されています(のつもりです)。
 
 ## インストール

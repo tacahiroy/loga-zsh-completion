@@ -1,4 +1,4 @@
-logaling-command zsh completion file
+logaling-command zsh completion definition
 ===========
 
 This is a completion definition file of logaling-command. And now, this supports version 0.1.5.

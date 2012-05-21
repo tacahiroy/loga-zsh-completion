@@ -1,4 +1,4 @@
-logaling-command zsh completion file
+logaling-command zsh completion definition
 ===========
 
 logaling-command の zsh 補完定義ファイルです。現在、version 0.1.5 に対応しています。

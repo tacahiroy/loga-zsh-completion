@@ -1,27 +1,28 @@
 logaling-command zsh completion file
 ===========
 
-This is a completion definition file of logaling-command. And now, this supports version 0.1.5.
-Almost of requirements have been implemented.
+logaling-command の zsh 補完定義ファイルです。現在、version 0.1.5 に対応しています。
+必要そうなものは大体実装されています(のつもりです)。
 
-## INSTALL
-Please locate in directory where other completion files are located.
-For example,
+## インストール
+他の補完定義ファイルと同じ場所に配置してください。例えば、
 
     git clone http://github.com/tacahiroy/loga-zsh-completion.git
     ln -s _loga_zsh_completion.zsh ~/.zsh/func/
 
-or following way also available,
+のようにしてください。もちろん、
 
     cp _loga_zsh_completion.zsh ~/.zsh/func/
 
-## TASKS
-The task will be completed after `loga` command.
+でもOKです。
 
-## Arguments of task and completion details
-e.g.)
+## タスク:
+`loga` コマンドに続いてタスクが補完されます
+
+## タスクの引数と補完される内容:
+例)
 `task [OPTION1] [OPTION2] [--something]`  
--> `candidate 1`, `candidate 2`...
+-> `補完1`, `補完2`...
 
 `config [KEY] [VALUE] [--global(optional)]`  
 -> `KEY`, `--global`
@@ -33,7 +34,7 @@ e.g.)
 -> `TASK`
 
 `import`  
--> project names that can get command `loga import --list`
+-> `loga import --list` で得られるプロジェクト名
 
 `lookup [TERM]`  
 -> `TERM`, `--no-pager`, `--no-color`, `--output={csv|json}`, `--dictionary`
@@ -46,19 +47,19 @@ e.g.)
 
 `update [SOURCE TERM] [TARGET TERM] [NEW TARGET TERM], [NOTE(optional)]`  
 -> `SOURCE TERM`,  `TARGET TERM`,  `NEW TARGET TERM`  
-`NEW TARGET TERM` will be completed same as `TARGET TERM`
+`NEW TARGET TERM` は、`TARGET TERM` と同じ内容を補完
 
     add [SOURCE TERM] [TARGET TERM] [NOTE(optional)]
     new [PROJECT NAME] [SOURCE LANGUAGE] [TARGET LANGUAGE(optional)]
     register
     unregister
     version
--> only options
+-> オプションのみ
 
 
-## OPTIONS:
-These options will be completed against all commands except `help`
-and position is always last.
+## オプション:
+オプションは、すべてのコマンドに対して補完されます(`help`は除く)。
+補完位置は常に最後です。
 
     [--glossary=GLOSSARY]
     [--source-language=SOURCE-LANGUAGE]
@@ -67,7 +68,7 @@ and position is always last.
     [--logaling-config=LOGALING-CONFIG]
 
 
-## LINK
+## リンク
 About logaling-command, see GitHub page:
  [logaling-command](https://github.com/logaling/logaling-command)
 

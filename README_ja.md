@@ -1,8 +1,7 @@
 logaling-command zsh completion definition
 ===========
 
-logaling-command の zsh 補完定義ファイルです。現在、version 0.1.5 に対応しています。
-必要そうなものは大体実装されています(のつもりです)。
+logaling-command の zsh 補完定義ファイルです。現在、version 0.1.7 に対応しています。
 
 ## インストール
 他の補完定義ファイルと同じ場所に配置してください。例えば、
@@ -57,7 +56,7 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.5
 -> オプションのみ
 
 
-## オプション:
+## オプション
 オプションは、すべてのコマンドに対して補完されます(`help`は除く)。
 補完位置は常に最後です。
 
@@ -67,6 +66,9 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.5
     [--logaling-home=LOGALING-HOME]
     [--logaling-config=LOGALING-CONFIG]
 
+
+## 制限事項
+`update`, `delete`, `lookup` の補完において、TERM に、タブ (0x09)が含まれている場合は、正しく動作しません。
 
 ## リンク
 About logaling-command, see GitHub page:

@@ -1,7 +1,7 @@
 logaling-command zsh completion definition
 ===========
 
-This is a completion definition file of logaling-command. And now, this supports version 0.1.5.
+This is a completion definition file of logaling-command. And now, this supports version 0.1.7.
 Almost of requirements have been implemented.
 
 ## INSTALL
@@ -56,7 +56,7 @@ e.g.)
 -> only options
 
 
-## OPTIONS:
+## OPTIONS
 These options will be completed against all commands except `help`
 and position is always last.
 
@@ -65,6 +65,10 @@ and position is always last.
     [--target-language=TARGET-LANGUAGE]
     [--logaling-home=LOGALING-HOME]
     [--logaling-config=LOGALING-CONFIG]
+
+## LIMITATION
+About completion of `update`, `delete` and `lookup`, if TERM includes Tab (0x09),  
+it wouldn't work correctly.
 
 
 ## LINK

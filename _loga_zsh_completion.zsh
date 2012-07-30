@@ -1,5 +1,5 @@
 #compdef loga
-# Version: 0.3.1-014
+# Version: 0.3.2-017
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 # supported logaling-command-0.1.7
 #

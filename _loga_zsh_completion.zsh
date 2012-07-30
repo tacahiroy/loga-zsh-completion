@@ -31,8 +31,8 @@ _loga_config_keys() {
 
 _loga_source_terms() {
   # trim TARGET TERM and NOTE
-  # GNU sed is preferable ...
-  terms=(${(f)"$(loga show --no-pager | sed -e 's/[ ]\{11,\}[^ ].*$//;s/^[ ]*//')"})
+  # By default, sed doesn't support '\t' and '\x09' on OS X :(
+  terms=(${(f)"$(loga show --no-pager | sed -e 's/^[ ]\{1,\}//;s/[ ]*	[^ ].*$//;s/^[ ]*//')"})
   compadd $@ -k terms
 }
 

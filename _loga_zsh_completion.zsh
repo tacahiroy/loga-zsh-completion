@@ -1,7 +1,7 @@
 #compdef loga
-# Version: 0.3.3-017
+# Version: 1.0.0
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
-# supported logaling-command-0.1.7
+# supported logaling-command-0.1.8
 #
 # License: The MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{
@@ -66,6 +66,7 @@ _loga_tasks() {
   _tasks=(
     "add"
     "config"
+    "copy"
     "delete"
     "help"
     "import"
@@ -84,6 +85,7 @@ local -a _tasks
 _tasks=(
   "add:Add term to glossary"
   "config:Set config"
+  "copy:Copy personal glossary"
   "delete:Delete term"
   "help:Describe available tasks or one specific task"
   "import:Import external glossary"
@@ -133,6 +135,16 @@ case "$words[1]" in
       "--global" \
       $_loga_global_flags
     ;;
+  copy)
+    _arguments \
+      ":glossary:_loga_glossaries" \
+      ":source-language:" \
+      ":target-language:" \
+      ":new-glossary-name:" \
+      ":new-source-language:" \
+      ":new-target-language:" \
+      $_loga_global_flags
+    ;;
   delete)
     _arguments \
       ":source:_loga_source_terms" \
@@ -159,6 +171,7 @@ case "$words[1]" in
   show)
     _arguments \
       "--no-pager" \
+      "(-A --annotation)"{-A,--annotation}"[search incomplete terms]" \
       $_loga_global_flags
     ;;
   list)

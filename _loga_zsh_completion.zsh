@@ -1,5 +1,5 @@
 #compdef loga
-# Version: 0.3.2-017
+# Version: 0.3.3-017
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
 # supported logaling-command-0.1.7
 #
@@ -99,7 +99,7 @@ _tasks=(
 # local -a terms glossaries is_project_dir
 
 #"--output=-[output type]:types:->output_type" \
-loga_global_flags=(
+_loga_global_flags=(
   "(-g --glossary=-)"{-g,--glossary=}"[glossary name]:glossaries:->glossary"
   "(-S --source-language=-)"{-S,--source-language=}"[source language(e.g. en)]"
   "(-T --target-language=-)"{-T,--target-language=}"[target language(e.g. ja)]"
@@ -118,27 +118,27 @@ fi
 case "$words[1]" in
   add|new|unregister)
     _arguments \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   import)
     _arguments \
       ":projects:_loga_importable_projects" \
       "--list" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   config)
     _arguments \
       ":key:_loga_config_keys" \
       ":value:" \
       "--global" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   delete)
     _arguments \
       ":source:_loga_source_terms" \
       ":target:_loga_target_terms" \
       "--force" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   lookup)
     _arguments \
@@ -147,24 +147,24 @@ case "$words[1]" in
       "--no-color" \
       "--output=-[output type]:types:->output_type" \
       "--dictionary" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   update)
     _arguments \
       ":source:_loga_source_terms" \
       ":target:_loga_target_terms" \
       ":new_target:_loga_target_terms" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   show)
     _arguments \
       "--no-pager" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   list)
     _arguments \
       "--no-pager" \
-      $loga_global_flags
+      $_loga_global_flags
     ;;
   help)
     _arguments \

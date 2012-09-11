@@ -1,7 +1,7 @@
 logaling-command zsh completion definition
 ===========
 
-logaling-command の zsh 補完定義ファイルです。現在、version 0.1.7 に対応しています。
+logaling-command の zsh 補完定義ファイルです。現在、version 0.1.8 に対応しています。
 
 ## インストール
 他の補完定義ファイルと同じ場所に配置してください。例えば、
@@ -25,6 +25,9 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.7
 
 `config [KEY] [VALUE] [--global(optional)]`  
 -> `KEY`, `--global`
+
+`copy [GLOSSARY NAME] [SOURCE LANGUAGE] [TARGET LANGUAGE] [NEW GLOSSARY NAME] [NEW SOURCE LANGUAGE] [NEW TARGET LANGUAGE]`  
+-> `GLOSSARY NAME`
 
 `delete [SOURCE TERM] [TARGET TERM(optional)] [--force(optional)]`  
 -> `SOURCE TERM`, `TARGET TERM`, `--force`

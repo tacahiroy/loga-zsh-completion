@@ -1,7 +1,7 @@
 logaling-command zsh completion definition
 ===========
 
-This is a completion definition file of logaling-command. And now, this supports version 0.1.7.
+This is a completion definition file of logaling-command. And now, this supports version 0.1.8.
 Almost of requirements have been implemented.
 
 ## INSTALL
@@ -26,6 +26,9 @@ e.g.)
 `config [KEY] [VALUE] [--global(optional)]`  
 -> `KEY`, `--global`
 
+`copy [GLOSSARY NAME] [SOURCE LANGUAGE] [TARGET LANGUAGE] [NEW GLOSSARY NAME] [NEW SOURCE LANGUAGE] [NEW TARGET LANGUAGE]`  
+-> `GLOSSARY NAME`
+
 `delete [SOURCE TERM] [TARGET TERM(optional)] [--force(optional)]`  
 -> `SOURCE TERM`, `TARGET TERM`, `--force`
 
@@ -42,7 +45,7 @@ e.g.)
 -> `--no-pager`
 
 `show`  
--> `--no-pager`
+-> `--no-pager`, `--annotation,-A`
 
 `update [SOURCE TERM] [TARGET TERM] [NEW TARGET TERM], [NOTE(optional)]`  
 -> `SOURCE TERM`,  `TARGET TERM`,  `NEW TARGET TERM`  

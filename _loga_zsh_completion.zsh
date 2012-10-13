@@ -1,7 +1,7 @@
 #compdef loga
 # Version: 1.0.0
 # Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
-# supported logaling-command-0.1.8
+# supported logaling-command-0.1.9
 #
 # License: The MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{
@@ -50,6 +50,20 @@ _loga_target_terms() {
 _loga_glossaries() {
   glossaries=(`loga list --no-pager | tr -d ' '`)
   compadd $@ -k glossaries
+}
+
+# this can be worked for 'loga copy' only
+_loga_source_language() {
+  glossary=$words[2]
+  lang=(${(f)"$(fgrep -e '--source-language' $HOME/.logaling.d/projects/${glossary}/config | grep -o '[^ ]\+$')"})
+  compadd $@ -k lang
+}
+
+# this can be worked for 'loga copy' only
+_loga_target_language() {
+  glossary=$words[2]
+  lang=(${(f)"$(fgrep -e '--target-language' $HOME/.logaling.d/projects/${glossary}/config | grep -o '[^ ]\+$')"})
+  compadd $@ -k lang
 }
 
 _loga_output_type() {
@@ -138,8 +152,8 @@ case "$words[1]" in
   copy)
     _arguments \
       ":glossary:_loga_glossaries" \
-      ":source-language:" \
-      ":target-language:" \
+      ":source-language:_loga_source_language" \
+      ":target-language:_loga_target_language" \
       ":new-glossary-name:" \
       ":new-source-language:" \
       ":new-target-language:" \

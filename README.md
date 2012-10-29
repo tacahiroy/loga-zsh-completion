@@ -1,7 +1,7 @@
 logaling-command zsh completion definition
 ===========
 
-This is a completion definition file of logaling-command. And now, this supports version 0.1.8.
+This is a completion definition file of logaling-command. And now, this supports version 0.2.0.
 Almost of requirements have been implemented.
 
 ## INSTALL

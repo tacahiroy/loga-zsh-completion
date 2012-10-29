@@ -1,7 +1,7 @@
 logaling-command zsh completion definition
 ===========
 
-logaling-command の zsh 補完定義ファイルです。現在、version 0.1.8 に対応しています。
+logaling-command の zsh 補完定義ファイルです。現在、version 0.2.0 に対応しています。
 
 ## インストール
 他の補完定義ファイルと同じ場所に配置してください。例えば、
@@ -39,7 +39,7 @@ logaling-command の zsh 補完定義ファイルです。現在、version 0.1.8
 -> `loga import --list` で得られるプロジェクト名
 
 `lookup [TERM]`  
--> `TERM`, `--no-pager`, `--no-color`, `--output={csv|json}`, `--dictionary`
+-> `TERM`, `--no-pager`, `--no-color`, `--output={csv|json}`, `--dict`, `--fixed`
 
 `list`  
 -> `--no-pager`

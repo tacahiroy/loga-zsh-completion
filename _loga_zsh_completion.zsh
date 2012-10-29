@@ -1,7 +1,7 @@
 #compdef loga
-# Version: 1.0.0
-# Author: Takahiro YOSHIHARA <tacahiroy```AT```gmail.com>
-# supported logaling-command-0.1.9
+# Version: 1.0.1
+# Author: Takahiro YOSHIHARA <tacahiroy\AT/gmail.com>
+# supported logaling-command-0.2.0
 #
 # License: The MIT License
 # Copyright 2012 Takahiro YOSHIHARA # {{{
@@ -171,8 +171,9 @@ case "$words[1]" in
       ":source:_loga_source_terms" \
       "--no-pager" \
       "--no-color" \
+      "--dict" \
+      "--fixed" \
       "--output=-[output type]:types:->output_type" \
-      "--dictionary" \
       $_loga_global_flags
     ;;
   update)
@@ -209,3 +210,4 @@ case "$state" in
 esac
 
 # vim: fen:fdm=marker
+
